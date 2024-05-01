@@ -8,7 +8,6 @@ variables:
   DOCKER_HOST: tcp://docker:2375
   DOCKER_DRIVER: overlay2
   GIT_SUBMODULE_STRATEGY: recursive
-  OPENREFINE_VERSION: $OPENREFINE_VERSION
 
 before_script:
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
@@ -20,6 +19,6 @@ build:
   stage: build
   script:
     - docker pull $CONTAINER_IMAGE:latest || true
-    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_COMMIT_SHA --tag $CONTAINER_IMAGE:latest .
+    - docker build --cache-from $CONTAINER_IMAGE:latest --build-arg OPENREFINE_VERSION=$OPENREFINE_VERSION --tag $CONTAINER_IMAGE:$CI_COMMIT_SHA --tag $CONTAINER_IMAGE:latest .
     - docker push $CONTAINER_IMAGE:$CI_COMMIT_SHA
     - docker push $CONTAINER_IMAGE:latest

@@ -18,7 +18,6 @@ stages:
 build:
   stage: build
   script:
-    - curl https://github.com/OpenRefine/OpenRefine/releases/download/3.7.9/openrefine-linux-3.7.9.tar.gz
     - docker pull $CONTAINER_IMAGE:latest || true
     - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_COMMIT_SHA --tag $CONTAINER_IMAGE:latest .
     - docker push $CONTAINER_IMAGE:$CI_COMMIT_SHA

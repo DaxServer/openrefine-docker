@@ -1,20 +1,35 @@
-ARG OPENREFINE_VERSION=3.8.2
+FROM openjdk:17-slim-bullseye
 
-FROM easypi/openrefine:$OPENREFINE_VERSION
+ARG OPENREFINE_VERSION=3.8.7
+ARG COMMONS_EXTENSION_VERSION=0.1.3
+ARG OPENREFINE_FILE=openrefine-linux-${OPENREFINE_VERSION:?}.tar.gz
+ARG OPENREFINE_URL=https://github.com/OpenRefine/OpenRefine/releases/download/${OPENREFINE_VERSION}/${OPENREFINE_FILE}
+ARG COMMONS_EXTENSION_URL=https://github.com/OpenRefine/CommonsExtension/releases/download/v${COMMONS_EXTENSION_VERSION}/openrefine-commons-extension-${COMMONS_EXTENSION_VERSION}.zip
 
-ARG COMMONS_EXTENSION_VERSION=0.1.2
-WORKDIR /opt/openrefine/webapp/extensions/commons
+ENV REFINE_INTERFACE=0.0.0.0
+ENV REFINE_PORT=3333
+ENV REFINE_DATA_DIR=/data
+ENV REFINE_MIN_MEMORY=256M
+ENV REFINE_MEMORY=1024M
 
-RUN apt update &&  \
-    apt install -y unzip && \
-    curl -sSL https://github.com/OpenRefine/CommonsExtension/releases/download/v$COMMONS_EXTENSION_VERSION/openrefine-commons.zip -o openrefine-commons.zip && \
+RUN apt-get update && \
+    apt-get install -y curl procps unzip && \
+    mkdir -p /opt/openrefine && \
+    cd /opt/openrefine && \
+    curl -sSL ${OPENREFINE_URL} | tar xz --strip 1 && \
+    mkdir -p /opt/openrefine/webapp/extensions/commons && \
+    cd /opt/openrefine/webapp/extensions/commons && \
+    curl -sSL ${COMMONS_EXTENSION_URL} -o openrefine-commons.zip && \
     unzip openrefine-commons.zip && \
     rm openrefine-commons.zip && \
-    apt remove -y unzip && \
-    apt autoremove -y && \
-    apt clean && \
+    apt-get remove -y unzip && \
+    apt-get autoremove -y && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+VOLUME $REFINE_DATA_DIR
 WORKDIR $REFINE_DATA_DIR
+EXPOSE $REFINE_PORT
 
-CMD ["-m", "3048M"]
+ENTRYPOINT ["/opt/openrefine/refine"]
+CMD ["-m", "3048M", "-v", "debug"]

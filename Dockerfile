@@ -9,10 +9,10 @@ ENV REFINE_MEMORY=1024M
 RUN apt-get update
 RUN apt-get install -y curl procps unzip
 
-ARG COMMONS_EXTENSION_VERSION=0.1.3
+ARG COMMONS_EXTENSION_VERSION=0.1.5
 ARG COMMONS_EXTENSION_URL=https://github.com/OpenRefine/CommonsExtension/releases/download/v${COMMONS_EXTENSION_VERSION}/openrefine-commons-extension-${COMMONS_EXTENSION_VERSION}.zip
 
-ARG OPENREFINE_VERSION=3.9.3
+ARG OPENREFINE_VERSION=3.9.5
 ARG OPENREFINE_URL=https://github.com/OpenRefine/OpenRefine/releases/download/${OPENREFINE_VERSION}/openrefine-linux-${OPENREFINE_VERSION}.tar.gz
 
 WORKDIR /opt/openrefine

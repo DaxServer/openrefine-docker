@@ -11,7 +11,7 @@ RUN apt-get install -y curl procps unzip
 
 ARG COMMONS_EXTENSION_URL=https://github.com/OpenRefine/CommonsExtension/releases/download/v0.1.5/openrefine-commons-extension-0.1.5-prerelease.zip
 
-ADD openrefine.tar.gz /opt/openrefine
+COPY openrefine-3.10-SNAPSHOT /opt/openrefine
 
 WORKDIR /opt/openrefine/webapp/extensions/commons
 RUN curl -sSL ${COMMONS_EXTENSION_URL} -o openrefine-commons.zip

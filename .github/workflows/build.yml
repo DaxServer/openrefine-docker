@@ -28,7 +28,7 @@ jobs:
           github-token: ${{ secrets.GH_TOKEN_REPO_OPENREFINE_FORK }}
           repository: DaxServer/OpenRefine
           run-id: 17795746482
-          path: openrefine.zip
+          path: openrefine
 
       - name: Unzip openrefine.zip
         run: |

@@ -28,14 +28,13 @@ jobs:
           github-token: ${{ secrets.GH_TOKEN_REPO_OPENREFINE_FORK }}
           repository: DaxServer/OpenRefine
           run-id: 17795746482
-          path: openrefine.zip
+          path: artifact_download_dir
 
-      - name: Unzip openrefine.zip
+      - name: Extract openrefine artifact
         run: |
           pwd
-          ls -al
-          unzip openrefine.zip
-          tar -xzf openrefine-linux-3.10-SNAPSHOT.tar.gz
+          ls -al artifact_download_dir
+          tar -xzf artifact_download_dir/openrefine-linux-3.10-SNAPSHOT.tar.gz
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3

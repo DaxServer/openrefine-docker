@@ -32,6 +32,8 @@ jobs:
 
       - name: Unzip openrefine.zip
         run: |
+          pwd
+          ls -al
           unzip openrefine.zip
           tar -xzf openrefine-linux-3.10-SNAPSHOT.tar.gz
 

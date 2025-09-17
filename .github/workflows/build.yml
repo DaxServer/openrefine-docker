@@ -24,10 +24,10 @@ jobs:
 
       - uses: actions/download-artifact@v5
         with:
-          name: openrefine-linux-aee7872514216ade476918003737368d755b15d9
+          name: openrefine-linux-17e1ab111dbb9fbb5d0ad055286c3ef5299da357
           github-token: ${{ secrets.GH_TOKEN_REPO_OPENREFINE_FORK }}
           repository: DaxServer/OpenRefine
-          run-id: 17795746482
+          run-id: 17797736154
           path: artifact_download_dir
 
       - name: Extract openrefine artifact

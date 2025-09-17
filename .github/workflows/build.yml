@@ -32,8 +32,6 @@ jobs:
 
       - name: Extract openrefine artifact
         run: |
-          pwd
-          ls -al artifact_download_dir
           tar -xzf artifact_download_dir/openrefine-linux-3.10-SNAPSHOT.tar.gz
 
       - name: Login to GitHub Container Registry

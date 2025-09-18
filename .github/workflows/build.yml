@@ -2,8 +2,6 @@ name: Build image
 
 on:
   push:
-    # tags:
-    #   - '*'
 
 env:
   REGISTRY: ghcr.io
@@ -27,7 +25,7 @@ jobs:
           name: openrefine-linux
           github-token: ${{ secrets.GH_TOKEN_REPO_OPENREFINE_FORK }}
           repository: DaxServer/OpenRefine
-          run-id: 17805220856
+          run-id: 17837047441
           path: artifact_download_dir
 
       - name: Extract openrefine artifact

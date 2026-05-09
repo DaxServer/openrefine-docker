@@ -25,7 +25,7 @@ jobs:
           name: openrefine-linux
           github-token: ${{ secrets.GH_TOKEN_REPO_OPENREFINE_FORK }}
           repository: DaxServer/OpenRefine
-          run-id: 18031475985
+          run-id: 25596898688
           path: artifact_download_dir
 
       - name: Extract openrefine artifact

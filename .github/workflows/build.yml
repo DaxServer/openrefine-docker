@@ -18,14 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - uses: actions/download-artifact@v5
         with:
           name: openrefine-linux
           github-token: ${{ secrets.GH_TOKEN_REPO_OPENREFINE_FORK }}
           repository: DaxServer/OpenRefine
-          run-id: 25596898688
+          run-id: 25601424785
           path: artifact_download_dir
 
       - name: Extract openrefine artifact

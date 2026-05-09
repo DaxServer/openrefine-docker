@@ -1,4 +1,4 @@
-FROM openjdk:17-slim-bullseye
+FROM eclipse-temurin:17-jre-jammy
 
 ENV REFINE_INTERFACE=0.0.0.0
 ENV REFINE_PORT=3333
